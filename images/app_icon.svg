@@ -84,7 +84,9 @@
        height="500"
        width="500"
        id="rect4158"
-       style="opacity:0.82999998;fill:#b1b1b1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="opacity:0.82999998;fill:#b1b1b1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
     <path
        id="path4170"
        d="m 336.76142,892.34805 a 125,125 0 0 1 -176.74729,-3.22445 125,125 0 0 1 3.22445,-176.74729 125,125 0 0 1 176.74729,3.22445 125,125 0 0 1 -3.22445,176.74729 z"
