@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QIcon>
 #include <jtcparameters.h>
 
 #include <iostream>

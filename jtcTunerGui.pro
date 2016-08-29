@@ -24,6 +24,12 @@ INCLUDEPATH += /usr/include
 
 FORMS    += mainwindow.ui
 
+LIBS += -lYARP_OS
+LIBS += -lYARP_sig
+LIBS += -lYARP_math
+LIBS += -lYARP_dev
+LIBS += -lYARP_name
+LIBS += -lYARP_init
 
 
 win32-msvc2010{
@@ -123,3 +129,6 @@ win32-msvc2010{
     LIBS += -lopencv_video249
     LIBS += -lopencv_videostab249
 }
+
+RESOURCES += \
+    resources.qrc

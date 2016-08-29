@@ -19,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent) :
     part_name_vector.push_back("left_leg");
     part_name_vector.push_back("torso");
 
+    setWindowIcon(QIcon(":/images/app_icon.png"));
+    setWindowTitle("JTC Tuner");
+
     part_name = part_name_vector[0]; // Start with first part
     joint_index = 0; // all parts have at least 1 joint
     n_joints = 1;
