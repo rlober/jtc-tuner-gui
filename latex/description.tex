@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+\title{How the torque loop works.}
+\maketitle
+
+
+
+The robot's motors are controlled by using PWM signals applied to the motors. Assuming that each motors affects the position of only one link via rigid transmission mechanisms, the relationship between the link's torque $ \tau $ and the motor's duty cycle $ PWM $ is assumed to be:
+$$
+  PWM  = {PWM}_{\text{control}} + k_v \dot{q} + k_c \mbox{sign}(\dot{q}),
+$$
+with $k_{ff}$, $k_v$, $k_c$ three constants, and $\dot{q}$ the joint's velocity.
+Since discontinuities may be challenging in practice, it is best to smooth the sign function. When,
+$$
+\|\dot{q}\| \geq \text{coulombVelThr}
+$$
+the coulomb friction is calculated as,
+$$
+\mbox{sign}(\dot{q}).
+$$
+However, for $\|\dot{q}\| < \text{coulombVelThr}$, the coulomb friction is calculated as,
+$$
+\left(\frac{\dot{q}}{\text{coulombVelThr}}\right)^3
+$$
+For the sake of simplicity we will simply refer to this as the $\mbox{sign}(\dot{q})$ operation.
+
+This model can be improved by considering possible parameters' asymmetries with respect to the joint velocity $\dot{q}$.
+In particular, the coulomb friction parameter  $k_c$ may depend on the sign of $\dot{q}$, and have different
+values depending on this sign. Then, an improved model is:
+$$
+  PWM  = {PWM}_{\text{control}} + k_{v} \dot{q} + [k_{cp} s(\dot{q}) + k_{cn} s(-\dot{q})] \mbox{sign}(\dot{q}),
+$$
+where the function $s(x)$ is the step function, i.e.
+\begin{align}
+    s(x) &=  1 \quad \mbox{if} \quad x >= 0 \\
+    s(x) &=  0 \quad \mbox{if} \quad x < 0
+\end{align}
+%
+As stated, the above equation constitutes the relation between the tension applied to the motor and the link torque.
+Then, to generate a desired torque $\tau_d$ coming from an higher control loop, it suffices to evaluate the above equation
+with $\tau = \tau_d$. In practice, however, it is a best practice to add a lower loop to generate $\tau$ so that $\tau$
+will converge to $\tau_d$, i.e:
+$$
+  {PWM}_{control} = k_{ff} \tau_d - k_p e_{\tau} - k_d \frac{de_{\tau}}{dt} - k_i \int e_{\tau} \mbox{dt},
+$$
+%
+where $e_{\tau} := \tau - \tau_{d}$.
+
+The integral term is saturated using the variable $\pm$ max\_int. The PWM values are determined using the motor coupling matrices. The final PWM output is saturated using $\pm$max\_pwm.
+
+
+
+\begin{center}
+\noindent \textit{This document was adapted from the documentation left over in the source code.}
+\end{center}
+
+
+
+
+
+
+
+\end{document}

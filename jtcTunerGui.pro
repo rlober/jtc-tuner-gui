@@ -55,7 +55,7 @@ win32-msvc2010{
         DEFINES += _MBCS
 
         LIBS += -L"$$(OPENCV_DIR)/lib"
-        LIBS += -L$$(YARP_ROOT)/build/lib/Debug
+        HelpFileLIBS += -L$$(YARP_ROOT)/build/lib/Debug
         LIBS += -L"$$(ACE_ROOT)/lib"
         LIBS += -L"$$(GSL_DIR)/lib"
 
