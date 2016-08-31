@@ -22,6 +22,24 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowIcon(QIcon(":/images/app_icon.png"));
     setWindowTitle("JTC Tuner");
 
+    // http://stackoverflow.com/questions/25899922/adding-pdf-as-a-resource-in-qrc
+    QFile HelpFile(":latex/description.pdf");
+    std::cout << qApp->applicationDirPath().append("/description.pdf").toStdString();
+
+
+    ui->kp_label->setToolTip("The proportional torque error gain.");
+    ui->ki_label->setToolTip("The integral torque error gain.");
+    ui->kd_label->setToolTip("The derivative torque error gain.");
+    ui->max_int_label->setToolTip("Maximum allowable integral gain windup (spooling).");
+    ui->max_pwm_label->setToolTip("Maximum allowable PWM signal.");
+    ui->kv_label->setToolTip("Propotional constant multiplied by the joint velocity (back emf).");
+    ui->kcp_label->setToolTip("Stiction up (qd > 0) proportional constant multiplied to the coulomb friction, or sign(qd) function.");
+    ui->kcn_label->setToolTip("Stiction down (qd < 0) proportional constant multiplied to the coulomb friction, or sign(qd) function.");
+    ui->coulombVelThr_label->setToolTip("Joint velocity at which to apply the sign(qd) estimate of coulomb friction. Below this threshold the coulomb friction is calculated as (qd/coulombVelThr)^3");
+    ui->kff_label->setToolTip("Feedforward proportional gain on the desired torque.");
+    ui->frictionCompensation_label->setToolTip("Coefficient from 0-1 which dictates how much of the calculated friction compensation is added to the PI control.");
+
+
     part_name = part_name_vector[0]; // Start with first part
     joint_index = 0; // all parts have at least 1 joint
     n_joints = 1;
