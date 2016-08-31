@@ -333,3 +333,12 @@ void MainWindow::on_saveButton_clicked()
 {
     saveJtcParameters();
 }
+
+void MainWindow::on_actionDocumentation_triggered()
+{
+
+
+//    QDesktopServices::openUrl(QUrl(":/latex/description.pdf"));
+    QDesktopServices::openUrl(QUrl::fromLocalFile(qApp->applicationDirPath().append("/description.pdf")));
+
+}

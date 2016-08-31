@@ -5,6 +5,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QIcon>
+#include <QDesktopServices>
+#include <QUrl>
 #include <jtcparameters.h>
 
 #include <iostream>
@@ -51,6 +53,9 @@ private slots:
     void on_frictionCompensation_input_editingFinished();
 
     void on_saveButton_clicked();
+
+    void on_actionDocumentation_triggered();
+
 
 private:
     bool connectToPartJtcPort();
