@@ -209,7 +209,7 @@ void MainWindow::on_kd_input_editingFinished()
 void MainWindow::on_max_int_input_editingFinished()
 {
     bool worked;
-    int tmp = ui->max_int_input->text().toInt(&worked);
+    double tmp = ui->max_int_input->text().toDouble(&worked);
     if (worked){
         jtc.max_int = tmp;
         jtc = sendJointParameters();
@@ -222,7 +222,7 @@ void MainWindow::on_max_int_input_editingFinished()
 void MainWindow::on_max_pwm_input_editingFinished()
 {
     bool worked;
-    int tmp = ui->max_pwm_input->text().toInt(&worked);
+    double tmp = ui->max_pwm_input->text().toDouble(&worked);
     if (worked){
         jtc.max_pwm = tmp;
         jtc = sendJointParameters();

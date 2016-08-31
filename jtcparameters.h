@@ -7,7 +7,7 @@ struct JtcParameters {
     double  kp;
     double  ki;
     double  kd;
-    int     max_int;
+    double  max_int;
     int     max_pwm;
     double  kv;
     double  kcp;
@@ -24,8 +24,8 @@ struct JtcParameters {
             if(key == "kp") {kp = bottle.get(++i).asDouble();}
             else if(key == "ki") {ki = bottle.get(++i).asDouble();}
             else if(key == "kd") {kd = bottle.get(++i).asDouble();}
-            else if(key == "max_int") {max_int = bottle.get(++i).asInt();}
-            else if(key == "max_pwm") {max_pwm = bottle.get(++i).asInt();}
+            else if(key == "max_int") {max_int = bottle.get(++i).asDouble();}
+            else if(key == "max_pwm") {max_pwm = bottle.get(++i).asDouble();}
             else if(key == "kv") {kv = bottle.get(++i).asDouble();}
             else if(key == "kcp") {kcp = bottle.get(++i).asDouble();}
             else if(key == "kcn") {kcn = bottle.get(++i).asDouble();}
@@ -45,9 +45,9 @@ struct JtcParameters {
         bottle.addString("kd");
         bottle.addDouble(kd);
         bottle.addString("max_int");
-        bottle.addInt(max_int);
+        bottle.addDouble(max_int);
         bottle.addString("max_pwm");
-        bottle.addInt(max_pwm);
+        bottle.addDouble(max_pwm);
         bottle.addString("kv");
         bottle.addDouble(kv);
         bottle.addString("kcp");
