@@ -8,31 +8,32 @@
 
 
 The robot's motors are controlled by using PWM signals applied to the motors. Assuming that each motors affects the position of only one link via rigid transmission mechanisms, the relationship between the link's torque $ \tau $ and the motor's duty cycle $ PWM $ is assumed to be:
-$$
+\begin{equation}
   PWM  = {PWM}_{\text{control}} + k_v \dot{q} + k_c \mbox{sign}(\dot{q}),
-$$
+\end{equation}
 with $k_{ff}$, $k_v$, $k_c$ three constants, and $\dot{q}$ the joint's velocity.
 Since discontinuities may be challenging in practice, it is best to smooth the sign function. When,
-$$
+\begin{equation}
 \|\dot{q}\| \geq \text{coulombVelThr}
-$$
+\end{equation}
 the coulomb friction is calculated as,
-$$
+\begin{equation}
 \mbox{sign}(\dot{q}).
-$$
+\end{equation}
 However, for $\|\dot{q}\| < \text{coulombVelThr}$, the coulomb friction is calculated as,
-$$
+\begin{equation}
 \left(\frac{\dot{q}}{\text{coulombVelThr}}\right)^3
-$$
+\end{equation}
 For the sake of simplicity we will simply refer to this as the $\mbox{sign}(\dot{q})$ operation.
 
 This model can be improved by considering possible parameters' asymmetries with respect to the joint velocity $\dot{q}$.
 In particular, the coulomb friction parameter  $k_c$ may depend on the sign of $\dot{q}$, and have different
 values depending on this sign. Then, an improved model is:
-$$
+\begin{equation}
   PWM  = {PWM}_{\text{control}} + k_{v} \dot{q} + [k_{cp} s(\dot{q}) + k_{cn} s(-\dot{q})] \mbox{sign}(\dot{q}),
-$$
+\end{equation}
 where the function $s(x)$ is the step function, i.e.
+
 \begin{align}
     s(x) &=  1 \quad \mbox{if} \quad x >= 0 \\
     s(x) &=  0 \quad \mbox{if} \quad x < 0
@@ -42,9 +43,9 @@ As stated, the above equation constitutes the relation between the tension appli
 Then, to generate a desired torque $\tau_d$ coming from an higher control loop, it suffices to evaluate the above equation
 with $\tau = \tau_d$. In practice, however, it is a best practice to add a lower loop to generate $\tau$ so that $\tau$
 will converge to $\tau_d$, i.e:
-$$
+\begin{equation}
   {PWM}_{control} = k_{ff} \tau_d - k_p e_{\tau} - k_d \frac{de_{\tau}}{dt} - k_i \int e_{\tau} \mbox{dt},
-$$
+\end{equation}
 %
 where $e_{\tau} := \tau - \tau_{d}$.
 
